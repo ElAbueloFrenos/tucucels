@@ -140,6 +140,21 @@
       ],
       [
         {
+          "value": "PUEDE NO SALIR POR SEGURIDAD ALTA",
+          "background": "#ffd966",
+          "fontColor": "#000000",
+          "bold": true,
+          "italic": true,
+          "underline": true,
+          "align": "center",
+          "fontsize": 11,
+          "monetary": false,
+          "rowspan": 1,
+          "colspan": 4
+        }
+      ],
+      [
+        {
           "value": "SAMS J1",
           "background": "#6d9eeb",
           "fontColor": "#000000",
