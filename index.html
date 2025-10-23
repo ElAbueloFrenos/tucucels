@@ -53,40 +53,41 @@
 
     function loadData() {
   fetch('datos.json')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('No se pudo cargar el archivo JSON');
+    .then(response => response.arrayBuffer())
+    .then(buffer => {
+      // Forzar decodificación en UTF-8
+      const decoder = new TextDecoder('utf-8');
+      const text = decoder.decode(buffer);
+      const data = JSON.parse(text);
+
+      sheetData = data;
+      data.forEach((sheet, i) => {
+        const opt = document.createElement("option");
+        opt.value = i;
+        opt.textContent = sheet.name;
+        select.appendChild(opt);
+      });
+
+      mostrarFecha();
+
+      var url_actual = window.location.href;
+      var letra_buscada = '?';
+      var pos = url_actual.indexOf(letra_buscada);
+      var param1 = "TODO_";
+      if (pos > 0) {
+        param1 = url_actual.substr(pos + 1);
+        param1 = decodeURIComponent(param1);
       }
-	return response.json();
+      renderTable(obtenerValorSelectOPrimero(param1));
+
+      document.getElementById('contener-tablas').classList.remove("container-flex");
+      document.getElementById('contener').classList.add("container-flex");
     })
-.then(data => {
-
-        sheetData = data;
-        data.forEach((sheet, i) => {
-          const opt = document.createElement("option");
-          opt.value = i;
-          opt.textContent = sheet.name;
-          select.appendChild(opt);
-        });
-        mostrarFecha();
-
-        var url_actual = window.location.href;
-        var letra_buscada = '?';
-        var pos = url_actual.indexOf(letra_buscada);
-        var param1 = "TODO_";
-        if (pos > 0) {
-          param1 = url_actual.substr(pos + 1);
-          param1 = decodeURIComponent(param1);
-        }
-        renderTable(obtenerValorSelectOPrimero(param1));
-
-        document.getElementById('contener-tablas').classList.remove("container-flex");
-        document.getElementById('contener').classList.add("container-flex");
-})
     .catch(error => {
       console.error('Error al cargar el JSON:', error);
     });
 }
+
 
 
     function renderTable(indexOrAll) {
