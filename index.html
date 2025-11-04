@@ -33,8 +33,8 @@
     function formatMoney(value) {
       if (typeof value !== "number") value = parseFloat(value);
       if (isNaN(value)) return value;
-      return "$" + value.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ".").replace(".", ",").replace(/,(\d{2})$/, ",$1");
-    }
+      return "$" + value.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, "."); // agrega puntos de miles
+	}
 
     function obtenerValorSelectOPrimero(valorBuscado) {
       if (!select || !select.options.length) {
@@ -270,3 +270,4 @@ function createTable(sheet) {
   </script>
 </body>
 </html>
+
