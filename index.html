@@ -170,14 +170,18 @@ function createTable(sheet) {
     columnPercents[i] = totalWidth > 0 ? (w / totalWidth) * 100 : 0;
   }
 
+	
+const trBase = document.createElement("tr");
+const tdBase = document.createElement("td");
+const tbodyBase = document.createElement("tbody");
+tdBase.style.height = "100px";
+trBase.appendChild(tdBase);
+tbodyBase.appendChild(trBase);
+headerTable.appendChild(tbodyBase);
+	
   // Construir filas; para poder mapear celdas a columnas reales usamos colPointer
   sheet.data.forEach((row, rowIndex) => {
     const tr = document.createElement("tr");
-	if(rowIndex === 0){
-		const tdBase = document.createElement("td");
-		tdBase.style.height = "100px";
-		tr.appendChild(tdBase);
-	}
 	
     let usedPercentRow = 0;    // para ajustar redondeo en la última celda de la fila
     let colPointer = 0;       // índice de columna real donde empieza la siguiente celda
