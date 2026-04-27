@@ -177,6 +177,9 @@ tdBase.id="_base";
 tdBase.style.height = "100px";
 trBase.appendChild(tdBase);
 headerTable.appendChild(trBase);
+
+const colCount = (sheet.columnWidths && sheet.columnWidths.length) ? sheet.columnWidths.length : 0;
+tdBase.colSpan = colCount;
 	
   // Construir filas; para poder mapear celdas a columnas reales usamos colPointer
   sheet.data.forEach((row, rowIndex) => {
@@ -187,10 +190,6 @@ headerTable.appendChild(trBase);
 
     // Precalcular el número de celdas de la fila (para detectar la última)
     const visibleCellsCount = row.length;
-
-	if(rowIndex === 0){
-		document.getElementById("_base").colSpan = visibleCellsCount;
-	}
 
     row.forEach((cell, visibleIndex) => {
       const td = document.createElement("td");
