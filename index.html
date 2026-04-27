@@ -169,17 +169,6 @@ function createTable(sheet) {
     const w = sheet.columnWidths && sheet.columnWidths[i] ? sheet.columnWidths[i] : 0;
     columnPercents[i] = totalWidth > 0 ? (w / totalWidth) * 100 : 0;
   }
-
-	
-const trBase = document.createElement("tr");
-const tdBase = document.createElement("td");
-tdBase.id="_base";
-tdBase.style.height = "100px";
-tdBase.style.background = "#fafafa";
-tdBase.style.border = "2px solid #fafafa";
-trBase.appendChild(tdBase);
-headerTable.appendChild(trBase);
-tdBase.colSpan = colCount;
 	
   // Construir filas; para poder mapear celdas a columnas reales usamos colPointer
   sheet.data.forEach((row, rowIndex) => {
