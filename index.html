@@ -173,6 +173,7 @@ function createTable(sheet) {
 	
 const trBase = document.createElement("tr");
 const tdBase = document.createElement("td");
+tdBase.id="_base";
 tdBase.style.height = "100px";
 trBase.appendChild(tdBase);
 headerTable.appendChild(trBase);
@@ -186,6 +187,10 @@ headerTable.appendChild(trBase);
 
     // Precalcular el número de celdas de la fila (para detectar la última)
     const visibleCellsCount = row.length;
+
+	if(rowIndex === 0){
+		document.getElementById("_base").colspan = visibleCellsCount;
+	}
 
     row.forEach((cell, visibleIndex) => {
       const td = document.createElement("td");
