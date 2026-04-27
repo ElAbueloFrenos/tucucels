@@ -173,11 +173,9 @@ function createTable(sheet) {
 	
 const trBase = document.createElement("tr");
 const tdBase = document.createElement("td");
-const tbodyBase = document.createElement("tbody");
 tdBase.style.height = "100px";
 trBase.appendChild(tdBase);
-tbodyBase.appendChild(trBase);
-headerTable.appendChild(tbodyBase);
+headerTable.appendChild(trBase);
 	
   // Construir filas; para poder mapear celdas a columnas reales usamos colPointer
   sheet.data.forEach((row, rowIndex) => {
