@@ -177,8 +177,6 @@ tdBase.id="_base";
 tdBase.style.height = "100px";
 trBase.appendChild(tdBase);
 headerTable.appendChild(trBase);
-
-const colCount = (sheet.columnWidths && sheet.columnWidths.length) ? sheet.columnWidths.length : 0;
 tdBase.colSpan = colCount;
 	
   // Construir filas; para poder mapear celdas a columnas reales usamos colPointer
